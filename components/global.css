@@ -1,3 +1,22 @@
+* {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: 0;
+}
+/* FONTE DE CORES */
+:root {
+  --vermelho: #b12b3d;
+  --branco-cinza: #f3f3f3;
+  --cinza-escuro: #6c6c6b;
+}
+
+/* Estilos gerais do corpo da página para demonstração */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* PARTE 1 DA PAGINA PRINCIPAL */
 .carousel-slides .slide {
   display: none;
   height: 100%;
@@ -20,25 +39,7 @@
 .carousel-slides .slide.active {
   display: flex;
 }
-* {
-  box-sizing: border-box;
-  border-width: 0;
-  border-style: 0;
-}
-/* FONTE DE CORES */
-:root {
-  --vermelho: #b12b3d;
-  --branco-cinza: #f3f3f3;
-  --cinza-escuro: #6c6c6b;
-}
 
-/* Estilos gerais do corpo da página para demonstração */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
-/* PARTE 1 DA PAGINA PRINCIPAL */
 /* Container principal da navegação */
 .main-nav {
   background-color: var(--vermelho); /* Cor de fundo vinho */
@@ -63,12 +64,13 @@ body {
 
 /* Estilos da lista de links */
 .nav-links {
-  list-style: none; /* Remove os marcadores de lista */
-  display: flex; /* Alinha os links horizontalmente */
-  gap: 70px; /* Espaço entre cada link */
+  list-style: none;
+  display: flex;
+  justify-content: center; /* Centraliza os links horizontalmente */
+  gap: 4%; /* Espaçamento entre cada link */
   margin: 0;
   padding: 0;
-  margin-left: 400px;
+  width: 100%; /* Garante que ocupe toda a largura disponível */
 }
 
 /* Estilos dos itens da lista */
@@ -79,11 +81,12 @@ body {
 /* Estilos dos links de navegação */
 .nav-links a {
   color: #fff;
-  text-decoration: none; /* Remove o sublinhado */
-  font-size: 18px;
+  text-decoration: none;
+  font-size: 1vw; /* Tamanho da fonte responsivo */
   font-weight: bold;
   text-transform: uppercase;
   transition: color 0.3s ease;
+  white-space: nowrap; /* Evita quebras de linha */
 }
 
 /* Efeito de hover nos links */
@@ -96,8 +99,46 @@ body {
   display: flex; /* Permite alinhar a navegação do carrossel */
   justify-content: center;
   align-items: center;
-  padding: 40px 5%;
+  padding: 40px 10%;
   background-color: rgb(250, 248, 245); /* Cor de fundo clara */
+  position: relative; /* Garante que as setas fiquem posicionadas corretamente dentro da seção */
+}
+
+/* Posicionamento adaptativo das setas do carrossel */
+.carousel-nav.left {
+  position: absolute;
+  left: 2rem; /* Espaçamento da borda esquerda */
+  top: 50%; /* Centraliza verticalmente */
+  transform: translateY(-50%); /* Ajuste fino para centralização */
+  z-index: 10; /* Garante que a seta fique visível */
+}
+
+.carousel-nav.right {
+  position: absolute;
+  right: 2rem; /* Espaçamento da borda direita */
+  top: 50%; /* Centraliza verticalmente */
+  transform: translateY(-50%); /* Ajuste fino para centralização */
+  z-index: 10; /* Garante que a seta fique visível */
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 900px) {
+  .carousel-nav.left {
+    left: 0.5rem; /* Reduz o espaçamento em telas menores */
+  }
+  .carousel-nav.right {
+    right: 0.5rem; /* Reduz o espaçamento em telas menores */
+  }
+}
+
+/* Ajuste para telas muito pequenas */
+@media (max-width: 600px) {
+  .carousel-nav.left {
+    left: 0.2rem; /* Reduz ainda mais o espaçamento em telas muito pequenas */
+  }
+  .carousel-nav.right {
+    right: 0.2rem; /* Reduz ainda mais o espaçamento em telas muito pequenas */
+  }
 }
 
 /* Container do conteúdo principal (texto e imagem) */
@@ -157,7 +198,7 @@ body {
 
 /* Estilos da imagem do produto */
 .image-content img {
-  max-width: 100%;
+  max-width: 300px;
   height: 500px;
   display: block;
   padding: 10px;
@@ -165,21 +206,13 @@ body {
 
 /* Estilos dos botões de navegação do carrossel */
 .carousel-nav {
-  position: relative;
+  position: absolute;
   width: 50px;
   height: 50px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.carousel-nav.left {
-  left: -20%;
-}
-
-.carousel-nav.right {
-  right: -20%;
 }
 
 .arrow-button {
@@ -189,7 +222,7 @@ body {
   color: #888;
   cursor: pointer;
   transition: color 0.3s ease;
-  padding: 0;
+  padding: 0px;
 }
 
 .arrow-button:hover {
@@ -416,4 +449,185 @@ body {
   padding-top: 10px;
   font-size: 0.8em;
   color: #aaa;
+}
+
+/* RESPONSIVIDADE PARA TELAS MENORES QUE 1200px */
+@media (max-width: 1200px) {
+  .content-container {
+    gap: 10px;
+    max-width: 900px;
+  }
+  .nav-links a {
+    font-size: 1.5vw; /* Aumenta um pouco o tamanho da fonte em telas menores */
+  }
+  .offer-logo {
+    height: 70px;
+  }
+  .offer-title {
+    font-size: 2em;
+  }
+  .offer-image.image-1 {
+    width: 300px;
+    height: 350px;
+    left: 0;
+  }
+  .offer-image-container {
+    height: 350px;
+  }
+}
+
+/* RESPONSIVIDADE PARA TELAS MENORES QUE 900px */
+@media (max-width: 900px) {
+  .main-nav {
+    flex-direction: column;
+    align-items: center; /* Centraliza os itens verticalmente */
+    min-height: unset;
+    padding: 10px 2%;
+  }
+  .logo {
+    margin-bottom: 10px;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 1%; /* Reduz o espaçamento entre os links */
+    font-size: 16px;
+    justify-content: center; /* Centraliza os links horizontalmente */
+  }
+  .nav-links a {
+    font-size: 2vw; /* Ajusta o tamanho da fonte para telas menores */
+  }
+  .content-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 100%;
+  }
+  .carousel-slides .image-content img,
+  .image-content img {
+    height: 300px;
+    width: 100%;
+    max-width: 300px;
+  }
+  .offer-section {
+    flex-direction: column;
+    padding: 40px 3%;
+  }
+  .offer-text-content,
+  .offer-image-container {
+    width: 100%;
+    max-width: 100%;
+  }
+  .offer-image-container {
+    height: 220px;
+  }
+  .offer-image.image-1 {
+    width: 200px;
+    height: 220px;
+    left: 20%;
+    top: 0;
+  }
+  .footer-container {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .footer-column {
+    min-width: unset;
+    width: 100%;
+  }
+  .social-media {
+    text-align: left;
+  }
+  .social-icons {
+    justify-content: flex-start;
+  }
+}
+
+/* RESPONSIVIDADE PARA TELAS MENORES QUE 600px */
+@media (max-width: 600px) {
+  .main-nav {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px 1%;
+  }
+  .logo img {
+    height: 35px;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 10px; /* Reduz o espaçamento entre os links */
+    font-size: 14px;
+    align-items: center; /* Centraliza os itens verticalmente */
+  }
+  .nav-links a {
+    font-size: 2.5vw; /* Ajusta o tamanho da fonte para telas menores */
+  }
+  .highlight-section {
+    padding: 20px 2%;
+  }
+  .content-container {
+    gap: 10px;
+    padding: 0;
+  }
+  .product-title {
+    font-size: 1.3em;
+  }
+  .text-content {
+    max-width: 100%;
+    gap: 10px;
+  }
+  .carousel-nav {
+    width: 30px;
+    height: 30px;
+  }
+  .arrow-button {
+    font-size: 2em;
+  }
+  .solutions-section {
+    padding: 30px 2%;
+  }
+  .solutions-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .solution-item img {
+    height: 150px;
+  }
+  .solution-btn {
+    padding: 10px 10px;
+    font-size: 14px;
+  }
+  .offer-section {
+    padding: 20px 2%;
+  }
+  .offer-title {
+    font-size: 1.2em;
+  }
+  .offer-logo {
+    height: 40px;
+    height: 40px;
+  }
+  .offer-image-container {
+    height: 120px;
+    height: 120px;
+  }
+  .offer-image.image-1 {
+    width: 100px;
+    height: 120px;
+    left: 10%;
+    top: 0;
+    top: 0;
+  }
+  .main-footer {
+    padding: 20px 2% 10px;
+    padding: 20px 2% 10px;
+  }
+  .column-title {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+  .copyright {
+    font-size: 0.7em;
+    padding-top: 5px;
+  }
 }
