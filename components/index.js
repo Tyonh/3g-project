@@ -1,3 +1,4 @@
+// --- Carrossel ---
 const slides = document.querySelectorAll(".highlight-section .slide");
 let currentSlide = 0;
 let interval = null;
@@ -38,3 +39,32 @@ function resetInterval() {
 // Inicialização
 showSlide(0);
 startInterval();
+
+// --- Menu responsivo ---
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("DOMContentLoaded fired");
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navLinks = document.querySelector(".nav-links");
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+      console.log("Menu toggle clicked");
+      navLinks.classList.toggle("open");
+      console.log("navLinks classes:", navLinks.classList);
+      menuToggle.setAttribute(
+        "aria-expanded",
+        navLinks.classList.contains("open")
+      );
+    });
+    // Fecha o menu ao clicar em um link (mobile UX)
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth <= 900) {
+          navLinks.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+  } else {
+    console.log("menuToggle or navLinks not found");
+  }
+});
