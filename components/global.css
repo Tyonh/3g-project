@@ -509,63 +509,116 @@ body {
   color: #aaa;
 }
 
-/* RESPONSIVIDADE PARA TELAS MENORES QUE 1200px */
-@media (max-width: 1200px) {
-  .content-container {
-    gap: 10px;
-    max-width: 900px;
-  }
-  .nav-links a {
-    font-size: 1.5vw; /* Aumenta um pouco o tamanho da fonte em telas menores */
-  }
-  .offer-logo {
-    height: 70px;
-  }
-  .offer-title {
-    font-size: 2em;
-  }
-  .offer-image.image-1 {
-    width: 300px;
-    height: 350px;
-    left: 0;
-  }
-  .offer-image-container {
-    height: 350px;
-  }
+/* --- RESPONSIVIDADE UNIVERSAL --- */
+
+/* NAVBAR: Centralização e espaçamento para todos os tamanhos */
+.main-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 70px;
+  padding: 10px 2vw;
+  position: relative;
+}
+.logo {
+  margin-bottom: 0;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+}
+.menu-toggle {
+  margin-left: auto;
+  align-self: center;
+  display: none;
 }
 
-/* Desktop: mostrar nav como flex em telas maiores */
-@media (min-width: 901px) {
-  .nav-links {
-    display: flex;
-  }
+/* NAV LINKS: Desktop */
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 4vw;
+  width: auto;
 }
 
-/* RESPONSIVIDADE PARA TELAS MENORES QUE 900px */
+/* MOBILE NAV */
 @media (max-width: 900px) {
-  .logo img {
-    height: 70px;
-    display: block;
-    margin: 0 auto;
-  }
   .main-nav {
-    flex-direction: column;
-    align-items: center; /* Centraliza os itens verticalmente */
-    min-height: unset;
-    padding: 10px 2%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 4vw;
   }
   .logo {
-    margin-bottom: 10px;
+    margin-right: auto;
+  }
+  .menu-toggle {
+    display: block !important;
+    margin-left: auto;
+    position: static;
   }
   .nav-links {
-    flex-wrap: wrap;
-    gap: 1%; /* Reduz o espaçamento entre os links */
-    font-size: 16px;
-    justify-content: center; /* Centraliza os links horizontalmente */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    width: 100vw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    display: none;
+    background: var(--vermelho);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  }
+  .nav-links.open {
+    display: flex !important;
+    z-index: 100;
+    top: 80px;
+    left: 0;
+    width: 100vw;
+  }
+  .nav-links li {
+    width: 100%;
+    padding: 0;
   }
   .nav-links a {
-    font-size: 2vw; /* Ajusta o tamanho da fonte para telas menores */
+    width: 100%;
+    display: block;
+    padding: 18px 24px;
+    font-size: 1.2em;
+    border-bottom: 1px solid #fff2;
   }
+}
+
+@media (max-width: 600px) {
+  .main-nav {
+    padding: 10px 2vw;
+  }
+  .logo img {
+    height: 50px;
+  }
+  .nav-links a {
+    font-size: 2.5vw;
+    padding: 14px 12px;
+  }
+}
+
+/* CARROSSEL E CONTEÚDO PRINCIPAL */
+.content-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 1200px;
+  gap: 30px;
+}
+@media (max-width: 900px) {
   .content-container {
     flex-direction: column;
     align-items: center;
@@ -574,13 +627,58 @@ body {
   }
   .carousel-slides .image-content img,
   .image-content img {
-    height: 300px;
+    height: 220px;
     width: 100%;
     max-width: 300px;
   }
+}
+@media (max-width: 600px) {
+  .content-container {
+    gap: 10px;
+    padding: 0;
+  }
+  .product-title {
+    font-size: 1.3em;
+  }
+}
+
+/* SOLUÇÕES GRID */
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+@media (max-width: 900px) {
+  .solutions-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+}
+@media (max-width: 600px) {
+  .solutions-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .solution-item img {
+    height: 120px;
+  }
+}
+
+/* OFERTAS E FOOTER: responsivo */
+.offer-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 5vw;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 900px) {
   .offer-section {
     flex-direction: column;
-    padding: 40px 3%;
+    padding: 40px 3vw;
   }
   .offer-text-content,
   .offer-image-container {
@@ -590,97 +688,18 @@ body {
   .offer-image-container {
     height: 220px;
   }
-  /* Override: Garantir que o botão hamburguer seja exibido em telas menores */
-  .menu-toggle {
-    display: block !important;
-    align-self: center;
-  }
 }
-
-@media (max-width: 900px) {
-  .main-nav {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-  .logo {
-    margin-bottom: 0;
-    margin-right: auto;
-  }
-  .menu-toggle {
-    align-self: center;
-    margin-left: auto;
-  }
-}
-
-/* RESPONSIVIDADE PARA TELAS MENORES QUE 600px */
 @media (max-width: 600px) {
-  .main-nav {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 10px 1%;
-  }
-  .logo img {
-    height: 70px;
-    display: block;
-    margin: 0 auto;
-  }
-  .nav-links {
-    flex-direction: column;
-    gap: 10px; /* Reduz o espaçamento entre os links */
-    font-size: 14px;
-    align-items: center; /* Centraliza os itens verticalmente */
-  }
-  .nav-links a {
-    font-size: 2.5vw; /* Ajusta o tamanho da fonte para telas menores */
-  }
-  .highlight-section {
-    padding: 20px 2%;
-  }
-  .content-container {
-    gap: 10px;
-    padding: 0;
-  }
-  .product-title {
-    font-size: 1.3em;
-  }
-  .text-content {
-    max-width: 100%;
-    gap: 10px;
-  }
-  .carousel-nav {
-    width: 30px;
-    height: 30px;
-  }
-  .arrow-button {
-    font-size: 2em;
-  }
-  .solutions-section {
-    padding: 30px 2%;
-  }
-  .solutions-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  .solution-item img {
-    height: 150px;
-  }
-  .solution-btn {
-    padding: 10px 10px;
-    font-size: 14px;
-  }
   .offer-section {
-    padding: 20px 2%;
+    padding: 20px 2vw;
   }
   .offer-title {
     font-size: 1.2em;
   }
   .offer-logo {
     height: 40px;
-    height: 40px;
   }
   .offer-image-container {
-    height: 120px;
     height: 120px;
   }
   .offer-image.image-1 {
@@ -688,18 +707,30 @@ body {
     height: 120px;
     left: 10%;
     top: 0;
-    top: 0;
   }
-  .main-footer {
-    padding: 20px 2% 10px;
-    padding: 20px 2% 10px;
+}
+
+/* FOOTER: responsivo */
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+@media (max-width: 900px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 10px;
   }
-  .column-title {
-    font-size: 1em;
-    margin-bottom: 10px;
+}
+
+/* Corrige sobreposição de media queries antigas */
+@media (max-width: 900px) {
+  .main-nav {
+    min-height: unset;
   }
-  .copyright {
-    font-size: 0.7em;
-    padding-top: 5px;
+  .logo img {
+    height: 60px;
   }
 }
